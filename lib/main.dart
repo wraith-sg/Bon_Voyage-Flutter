@@ -1,3 +1,6 @@
+
+
+import 'package:bonvoyage/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -200,14 +203,14 @@ class Body extends StatelessWidget {
               vertical: MediaQuery.of(context).size.height / 6),
           child: Container(
             width: 320,
-            child: _formLogin(),
+            child: _formLogin(context),
           ),
         )
       ],
     );
   }
 
-  Widget _formLogin() {
+  Widget _formLogin(BuildContext context) {
     return Column(
       children: [
         TextField(
@@ -268,7 +271,13 @@ class Body extends StatelessWidget {
                 width: double.infinity,
                 height: 50,
                 child: Center(child: Text("Sign In"))),
-            onPressed: () => print("it's pressed"),
+                onPressed: () async {
+                // Navigator.push(context,
+                // MaterialPageRoute(builder: (context) => HomePage()),
+                // );
+                Navigator.push(context,
+                    MaterialPageRoute(builder: (context) => HomePage()));
+                },
             style: ElevatedButton.styleFrom(
               primary: Colors.deepPurple,
               onPrimary: Colors.white,
