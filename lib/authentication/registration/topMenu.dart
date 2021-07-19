@@ -4,31 +4,30 @@ import 'package:bonvoyage/utilities/navbar/routes/routes.dart';
 class Menu extends StatelessWidget {
   String? get routeName => null;
 
-
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.symmetric(vertical: 30),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.start,
-              children: [
-                _menuItem(title: 'Home', routeName: routeLoginPage),
-                _menuItem(title: 'About us', routeName: routeLoginPage),
-                _menuItem(title: 'Contact us', routeName: routeLoginPage),
-                _menuItem(title: 'Help', routeName: routeLoginPage),
-              ],
-            ),
-            Row(
-              children: [
-                _menuItem(title: 'Sign In', isActive: true, routeName: routeLoginPage),
-                _menuItem(title: 'Register', isActive: false, routeName: routeRegistrationPage),
-              ],
-            ),
-          ],
-        ),
+      padding: const EdgeInsets.symmetric(vertical: 30),
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              _menuItem(title: 'Home', routeName: routeLoginPage),
+              _menuItem(title: 'About us', routeName: routeLoginPage),
+              _menuItem(title: 'Contact us', routeName: routeLoginPage),
+              _menuItem(title: 'Help', routeName: routeLoginPage),
+            ],
+          ),
+          Row(
+            children: [
+              _menuItem(title: 'Sign In', isActive: false, routeName: routeLoginPage),
+              _menuItem(title: 'Register', isActive: true, routeName: routeRegistrationPage),
+            ],
+          ),
+        ],
+      ),
     );
   }
 

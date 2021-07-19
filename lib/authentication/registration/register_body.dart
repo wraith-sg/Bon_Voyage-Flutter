@@ -1,5 +1,5 @@
-import 'package:bonvoyage/authentication/login/login_form.dart';
-import 'package:bonvoyage/authentication/registration/register_page.dart';
+import 'package:bonvoyage/authentication/login/login_page.dart';
+import 'package:bonvoyage/authentication/registration/register_form.dart';
 import 'package:flutter/material.dart';
 
 class Body extends StatefulWidget {
@@ -19,7 +19,7 @@ class BodyState extends State<Body> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text(
-                'Sign In to \nBon Voyage!',
+                'Register to \nBon Voyage!',
                 style: TextStyle(
                   fontFamily: 'OpenSans',
                   fontSize: 45,
@@ -30,7 +30,7 @@ class BodyState extends State<Body> {
               Row(
                 children: [
                   Text(
-                    "If you don't have an account you can",
+                    "If you already have an account you can",
                     style: TextStyle(
                         fontFamily: 'OpenSans',
                         color: Colors.black54,
@@ -38,19 +38,19 @@ class BodyState extends State<Body> {
                   ),
                   MouseRegion(
                     cursor: SystemMouseCursors.click,
-                    child: GestureDetector(
-                      onTap: () {
-                        Navigator.push(context,
-                            MaterialPageRoute(builder: (context) => RegisterPage()));
-                      },
-                      child: Text(
-                        " Register Here!",
-                        style: TextStyle(
-                            fontFamily: 'OpenSans',
-                            color: Color(0xFF6F35A5),
-                            fontWeight: FontWeight.bold),
+                      child: GestureDetector(
+                        onTap: () {
+                          Navigator.push(context,
+                              MaterialPageRoute(builder: (context) => LoginPage()));
+                        },
+                        child: Text(
+                          " Sign In Here!",
+                          style: TextStyle(
+                              fontFamily: 'OpenSans',
+                              color: Color(0xFF6F35A5),
+                              fontWeight: FontWeight.bold),
+                        ),
                       ),
-                    ),
                   ),
                 ],
               ),
@@ -74,7 +74,7 @@ class BodyState extends State<Body> {
             width: 320,
 
             //Here we have called the login form function
-            child: LoginForm(context: context,),
+            child: RegisterForm(context: context,),
 
           ),
         )
