@@ -1,6 +1,8 @@
 import 'package:flutter/rendering.dart';
 import 'package:bonvoyage/homepage/homepage.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import './register.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -19,7 +21,7 @@ class _LoginPageState extends State<LoginPage> {
           // MediaQuery.of(context).size.width >= 980
           //     ? Menu()
           //     : SizedBox(), // Responsive
-          Body()
+          _Body()
         ],
       ),
     );
@@ -74,19 +76,19 @@ class Menu extends StatelessWidget {
             ),
             isActive
                 ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              decoration: BoxDecoration(
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6.0,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-            )
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  )
                 : SizedBox()
           ],
         ),
@@ -114,19 +116,19 @@ class Menu extends StatelessWidget {
             ),
             isActive
                 ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              decoration: BoxDecoration(
-                color: Color(0xFF6F35A5),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6.0,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-            )
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF6F35A5),
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  )
                 : SizedBox()
           ],
         ),
@@ -157,7 +159,18 @@ class Menu extends StatelessWidget {
   }
 }
 
-class Body extends StatelessWidget {
+class _Body extends StatefulWidget {
+  @override
+  __BodyState createState() => __BodyState();
+}
+
+class __BodyState extends State<_Body> {
+  final TextEditingController _emailcontroller = TextEditingController();
+
+  final TextEditingController _passwordcontroller = TextEditingController();
+
+  FirebaseAuth _auth = FirebaseAuth.instance;
+
   @override
   Widget build(BuildContext context) {
     return Row(
@@ -183,11 +196,13 @@ class Body extends StatelessWidget {
                     "If you don't have an account you can",
                     style: TextStyle(
                         fontFamily: 'OpenSans',
-                        color: Colors.black54, fontWeight: FontWeight.bold),
+                        color: Colors.black54,
+                        fontWeight: FontWeight.bold),
                   ),
                   GestureDetector(
                     onTap: () {
-                      print(MediaQuery.of(context).size.width);
+                      Navigator.push(context,
+                          MaterialPageRoute(builder: (context) => Register()));
                     },
                     child: Text(
                       " Register Here!",
@@ -206,7 +221,6 @@ class Body extends StatelessWidget {
             ],
           ),
         ),
-
         MediaQuery.of(context).size.width >= 1300 //Responsive
             ? Image.asset(
                 'images/illustration-1.png',
@@ -247,28 +261,28 @@ class Body extends StatelessWidget {
             ],
           ),
           child: TextFormField(
-          // controller: _emailcontroller,
-          keyboardType: TextInputType.emailAddress,
-          style: TextStyle(
-            color: Color(0xFF6F35A5),
-            fontFamily: 'OpenSans',
-            fontWeight: FontWeight.bold,
-          ),
-          cursorColor: Color(0xFF6F35A5),
-          validator: (value) {
-            if (value == null || value.isEmpty) {
-              return '*';
-            }
-            return null;
-          },
-          decoration: InputDecoration(
-            errorStyle: TextStyle(height: 0),
-            border: InputBorder.none,
-            contentPadding: EdgeInsets.symmetric(vertical: 12.5),
-            prefixIcon: Icon(
-              Icons.email,
+            controller: _emailcontroller,
+            keyboardType: TextInputType.emailAddress,
+            style: TextStyle(
               color: Color(0xFF6F35A5),
+              fontFamily: 'OpenSans',
+              fontWeight: FontWeight.bold,
             ),
+            cursorColor: Color(0xFF6F35A5),
+            validator: (value) {
+              if (value == null || value.isEmpty) {
+                return '*';
+              }
+              return null;
+            },
+            decoration: InputDecoration(
+              errorStyle: TextStyle(height: 0),
+              border: InputBorder.none,
+              contentPadding: EdgeInsets.symmetric(vertical: 12.5),
+              prefixIcon: Icon(
+                Icons.email,
+                color: Color(0xFF6F35A5),
+              ),
               hintText: 'Enter your Email Address',
               hintStyle: TextStyle(
                 color: Colors.black54,
@@ -286,8 +300,8 @@ class Body extends StatelessWidget {
           padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
           decoration: BoxDecoration(
             border: Border.all(
-            color: Color(0xFF6F35A5),
-            width: 2,
+              color: Color(0xFF6F35A5),
+              width: 2,
             ),
             color: Color(0xFFF1E6FF),
             borderRadius: BorderRadius.circular(15.0),
@@ -300,7 +314,7 @@ class Body extends StatelessWidget {
             ],
           ),
           child: TextFormField(
-            // controller: _passwordcontroller,
+            controller: _passwordcontroller,
             obscureText: true,
             style: TextStyle(
               color: Color(0xFF6F35A5),
@@ -356,8 +370,7 @@ class Body extends StatelessWidget {
                 height: 60,
                 child: Center(child: Text("Sign In"))),
             onPressed: () async {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (context) => HomePage()));
+              login();
             },
             style: ElevatedButton.styleFrom(
               primary: Color(0xFF6F35A5),
@@ -398,46 +411,59 @@ class Body extends StatelessWidget {
     );
   }
 
+  login() async {
+    try {
+      final UserCredential cred = await _auth.signInWithEmailAndPassword(
+          email: _emailcontroller.text, password: _passwordcontroller.text);
+      //User? use = cred.user;
+      Navigator.push(
+          context, MaterialPageRoute(builder: (context) => HomePage()));
+    } catch (e) {
+      print(e.toString());
+      print('Wrong Email ID or Password');
+    }
+  }
+
   Widget _loginWithButton({required String image, bool isActive = false}) {
     return Container(
       width: 90,
       height: 70,
       decoration: isActive
           ? BoxDecoration(
-        color: Colors.white,
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            spreadRadius: 10,
-            blurRadius: 30,
-          )
-        ],
-        borderRadius: BorderRadius.circular(15),
-      )
-          : BoxDecoration(
-        borderRadius: BorderRadius.circular(15),
-        border: Border.all(color: Colors.black12),
-      ),
-      child: Center(
-          child: Container(
-            decoration: isActive
-                ? BoxDecoration(
               color: Colors.white,
-              borderRadius: BorderRadius.circular(35),
               boxShadow: [
                 BoxShadow(
-                  color: Colors.black38,
-                  blurRadius: 6.0,
-                  offset: Offset(0, 2),
-                ),
+                  color: Colors.black12,
+                  spreadRadius: 10,
+                  blurRadius: 30,
+                )
               ],
+              borderRadius: BorderRadius.circular(15),
             )
-                : BoxDecoration(),
-            child: Image.asset(
-              '$image',
-              width: 35,
+          : BoxDecoration(
+              borderRadius: BorderRadius.circular(15),
+              border: Border.all(color: Colors.black12),
             ),
-          )),
+      child: Center(
+          child: Container(
+        decoration: isActive
+            ? BoxDecoration(
+                color: Colors.white,
+                borderRadius: BorderRadius.circular(35),
+                boxShadow: [
+                  BoxShadow(
+                    color: Colors.black38,
+                    blurRadius: 6.0,
+                    offset: Offset(0, 2),
+                  ),
+                ],
+              )
+            : BoxDecoration(),
+        child: Image.asset(
+          '$image',
+          width: 35,
+        ),
+      )),
     );
   }
 }
