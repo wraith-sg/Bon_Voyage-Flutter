@@ -4,8 +4,6 @@ import 'package:bonvoyage/homepage/homepage_body.dart';
 import 'package:bonvoyage/homepage/homepage_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:bonvoyage/homepage/resources/app_assets.dart';
-import 'package:bonvoyage/homepage/resources/app_colors.dart';
-import 'package:bonvoyage/homepage/resources/app_string.dart';
 
 class HomePage extends StatefulWidget {
   @override
