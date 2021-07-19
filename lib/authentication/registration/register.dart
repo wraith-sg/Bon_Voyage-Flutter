@@ -32,10 +32,6 @@ class _RegisterState extends State<Register> {
     return user;
   }
 
-  // void updateUser(User? ser) {
-  //   User? cUser = _auth.currentUser;
-  //   cUser?.updateDisplayName(_namecontroller.text);
-
   //   //cUser?.updatePhotoURL(photoURL)
   // }
 
