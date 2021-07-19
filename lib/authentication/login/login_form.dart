@@ -1,11 +1,18 @@
-import 'package:bonvoyage/authentication/registration/register.dart';
 import 'package:bonvoyage/homepage/homepage.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-class LoginForm extends StatelessWidget {
-  BuildContext prevcontext;
-  LoginForm({Key? key,required BuildContext context}) : prevcontext=context,super(key: key);
 
+class LoginForm extends StatefulWidget {
+  BuildContext prevcontext;
+  LoginForm({Key? key, required BuildContext context})
+      : prevcontext = context,
+        super(key: key);
+
+  @override
+  _LoginFormState createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
   @override
   Widget build(BuildContext context) {
     FirebaseAuth _auth = FirebaseAuth.instance;
@@ -156,7 +163,7 @@ class LoginForm extends StatelessWidget {
                 height: 60,
                 child: Center(child: Text("Sign In"))),
             onPressed: () async {
-              login(prevcontext);
+              login(widget.prevcontext);
             },
             style: ElevatedButton.styleFrom(
               primary: Color(0xFF6F35A5),
@@ -204,40 +211,39 @@ Widget _loginWithButton({required String image, bool isActive = false}) {
     height: 70,
     decoration: isActive
         ? BoxDecoration(
-      color: Colors.white,
-      boxShadow: [
-        BoxShadow(
-          color: Colors.black12,
-          spreadRadius: 10,
-          blurRadius: 30,
-        )
-      ],
-      borderRadius: BorderRadius.circular(15),
-    )
-        : BoxDecoration(
-      borderRadius: BorderRadius.circular(15),
-      border: Border.all(color: Colors.black12),
-    ),
-    child: Center(
-        child: Container(
-          decoration: isActive
-              ? BoxDecoration(
             color: Colors.white,
-            borderRadius: BorderRadius.circular(35),
             boxShadow: [
               BoxShadow(
-                color: Colors.black38,
-                blurRadius: 6.0,
-                offset: Offset(0, 2),
-              ),
+                color: Colors.black12,
+                spreadRadius: 10,
+                blurRadius: 30,
+              )
             ],
+            borderRadius: BorderRadius.circular(15),
           )
-              : BoxDecoration(),
-          child: Image.asset(
-            '$image',
-            width: 35,
+        : BoxDecoration(
+            borderRadius: BorderRadius.circular(15),
+            border: Border.all(color: Colors.black12),
           ),
-        )),
+    child: Center(
+        child: Container(
+      decoration: isActive
+          ? BoxDecoration(
+              color: Colors.white,
+              borderRadius: BorderRadius.circular(35),
+              boxShadow: [
+                BoxShadow(
+                  color: Colors.black38,
+                  blurRadius: 6.0,
+                  offset: Offset(0, 2),
+                ),
+              ],
+            )
+          : BoxDecoration(),
+      child: Image.asset(
+        '$image',
+        width: 35,
+      ),
+    )),
   );
 }
-

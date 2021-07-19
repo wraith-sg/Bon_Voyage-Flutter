@@ -1,7 +1,6 @@
 import 'package:bonvoyage/authentication/login/login_form.dart';
 import 'package:bonvoyage/authentication/registration/register.dart';
 import 'package:flutter/material.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 
 class Body extends StatefulWidget {
   @override
@@ -61,9 +60,9 @@ class BodyState extends State<Body> {
         ),
         MediaQuery.of(context).size.width >= 1300 //Responsive
             ? Image.asset(
-          'images/illustration-1.png',
-          width: 300,
-        )
+                'images/illustration-1.png',
+                width: 300,
+              )
             : SizedBox(),
         Padding(
           padding: EdgeInsets.symmetric(
@@ -72,12 +71,12 @@ class BodyState extends State<Body> {
             width: 320,
 
             //Here we have called the login form function
-            child: LoginForm(context: context,),
-
+            child: LoginForm(
+              context: context,
+            ),
           ),
         )
       ],
     );
   }
-
 }

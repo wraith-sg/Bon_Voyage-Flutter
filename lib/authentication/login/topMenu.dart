@@ -48,19 +48,19 @@ class Menu extends StatelessWidget {
             ),
             isActive
                 ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              decoration: BoxDecoration(
-                color: Colors.deepPurple,
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6.0,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-            )
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Colors.deepPurple,
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  )
                 : SizedBox()
           ],
         ),
@@ -88,19 +88,19 @@ class Menu extends StatelessWidget {
             ),
             isActive
                 ? Container(
-              padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
-              decoration: BoxDecoration(
-                color: Color(0xFF6F35A5),
-                borderRadius: BorderRadius.circular(30),
-                boxShadow: [
-                  BoxShadow(
-                    color: Colors.black12,
-                    blurRadius: 6.0,
-                    offset: Offset(0, 2),
-                  ),
-                ],
-              ),
-            )
+                    padding: EdgeInsets.symmetric(horizontal: 12, vertical: 2),
+                    decoration: BoxDecoration(
+                      color: Color(0xFF6F35A5),
+                      borderRadius: BorderRadius.circular(30),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.black12,
+                          blurRadius: 6.0,
+                          offset: Offset(0, 2),
+                        ),
+                      ],
+                    ),
+                  )
                 : SizedBox()
           ],
         ),

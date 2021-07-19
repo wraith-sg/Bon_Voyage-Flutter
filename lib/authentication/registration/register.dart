@@ -1,7 +1,6 @@
-import 'dart:html';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:google_fonts/google_fonts.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Register extends StatefulWidget {
   @override
@@ -13,19 +12,32 @@ class _RegisterState extends State<Register> {
   String mail = '';
   String pass = '';
   FirebaseAuth _auth = FirebaseAuth.instance;
+  CollectionReference cref = FirebaseFirestore.instance.collection('users');
   final TextEditingController _emailcontroller = TextEditingController();
   final TextEditingController _passwordcontroller = TextEditingController();
   final TextEditingController _phonecontroller = TextEditingController();
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _citycontroller = TextEditingController();
-
+  User? user;
   Future<User?> registerUser() async {
     UserCredential uerCred = await _auth.createUserWithEmailAndPassword(
         email: _emailcontroller.text, password: _passwordcontroller.text);
-    User? user = uerCred.user;
-
+    user = uerCred.user;
+    cref.add({
+      'email': _emailcontroller.text,
+      'phone': _passwordcontroller.text,
+      'city': _citycontroller.text,
+      'name': _namecontroller.text
+    });
     return user;
   }
+
+  // void updateUser(User? ser) {
+  //   User? cUser = _auth.currentUser;
+  //   cUser?.updateDisplayName(_namecontroller.text);
+
+  //   //cUser?.updatePhotoURL(photoURL)
+  // }
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -307,7 +319,14 @@ class _RegisterState extends State<Register> {
         ),
         onPressed: () async {
           if (_key.currentState!.validate()) {
-            registerUser();
+            try {
+              registerUser();
+              //updateUser(user);
+              print(user.toString());
+            } catch (e) {
+              print(e.toString());
+            }
+
             // Navigator.push(
             //   context,
             //   MaterialPageRoute(builder: (context) => ExisStudentScreen()),
