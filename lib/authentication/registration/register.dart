@@ -19,6 +19,32 @@ class _RegisterState extends State<Register> {
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _citycontroller = TextEditingController();
 
+  Future<User?> registerUser() async {
+    UserCredential uerCred = await _auth.createUserWithEmailAndPassword(
+        email: _emailcontroller.text, password: _passwordcontroller.text);
+    User? user = uerCred.user;
+
+    return user;
+  }
+
+  Widget build(BuildContext context) {
+    return Scaffold(
+        body: Container(
+            child: Form(
+      key: _key,
+      child: Column(
+        children: <Widget>[
+          _buildEmailTF(),
+          _buildNameTF(),
+          _buildCityTF(),
+          _buildPhoneTF(),
+          _buildPasswordTF(),
+          _buildLoginBtn()
+        ],
+      ),
+    )));
+  }
+
   Widget _buildEmailTF() {
     return Column(children: <Widget>[
       Container(
@@ -299,31 +325,5 @@ class _RegisterState extends State<Register> {
         ),
       ),
     );
-  }
-
-  Future<User?> registerUser() async {
-    UserCredential uerCred = await _auth.createUserWithEmailAndPassword(
-        email: _emailcontroller.text, password: _passwordcontroller.text);
-    User? user = uerCred.user;
-
-    return user;
-  }
-
-  Widget build(BuildContext context) {
-    return Scaffold(
-        body: Container(
-            child: Form(
-      key: _key,
-      child: Column(
-        children: <Widget>[
-          _buildEmailTF(),
-          _buildNameTF(),
-          _buildCityTF(),
-          _buildPhoneTF(),
-          _buildPasswordTF(),
-          _buildLoginBtn()
-        ],
-      ),
-    )));
   }
 }
