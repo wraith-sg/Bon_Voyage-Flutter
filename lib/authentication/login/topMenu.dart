@@ -17,7 +17,7 @@ class Menu extends StatelessWidget {
               children: [
                 _menuItem(title: 'Home', routeName: routeLoginPage),
                 _menuItem(title: 'About us', routeName: routeLoginPage),
-                _menuItem(title: 'Contact us', routeName: routeLoginPage),
+                _menuItem(title: 'Blog', routeName: routeLoginPage),
                 _menuItem(title: 'Help', routeName: routeLoginPage),
               ],
             ),
