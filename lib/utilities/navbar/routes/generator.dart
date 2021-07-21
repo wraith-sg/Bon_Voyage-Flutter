@@ -10,6 +10,14 @@ class RouteGenerator {
         return MaterialPageRoute(builder: (_) => LoginPage());
       case routeRegistrationPage:
         return MaterialPageRoute(builder: (_) => RegisterPage());
+      // case routeHome:
+      //   return MaterialPageRoute(builder: (_) => ());
+      // case routeAbout:
+      //   return MaterialPageRoute(builder: (_) => ());
+      // case routeContact:
+      //   return MaterialPageRoute(builder: (_) => ());
+      // case routeHelp:
+      //   return MaterialPageRoute(builder: (_) => ());
     }
   }
 }
