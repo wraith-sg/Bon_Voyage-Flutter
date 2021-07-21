@@ -16,7 +16,6 @@ class RegisterForm extends StatelessWidget {
     final TextEditingController _passwordcontroller = TextEditingController();
     final TextEditingController _phonecontroller = TextEditingController();
     final TextEditingController _namecontroller = TextEditingController();
-    final TextEditingController _citycontroller = TextEditingController();
 
     Future<User?> registerUser() async {
       UserCredential uerCred = await _auth.createUserWithEmailAndPassword(
@@ -229,63 +228,6 @@ class RegisterForm extends StatelessWidget {
                 color: Color(0xFF6F35A5),
               ),
               hintText: 'Enter your Password',
-              hintStyle: TextStyle(
-                color: Colors.black54,
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
-                letterSpacing: 0.5,
-              ),
-              suffixIcon: Icon(
-                Icons.visibility_off_outlined,
-                color: Colors.grey,
-              ),
-              labelStyle: TextStyle(fontSize: 12),
-            ),
-          ),
-        ),
-        SizedBox(height: 20),
-        Container(
-          margin: EdgeInsets.symmetric(vertical: 10),
-          padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-          decoration: BoxDecoration(
-            border: Border.all(
-              color: Color(0xFF6F35A5),
-              width: 2,
-            ),
-            color: Color(0xFFF1E6FF),
-            borderRadius: BorderRadius.circular(15.0),
-            boxShadow: [
-              BoxShadow(
-                color: Colors.black38,
-                blurRadius: 6.0,
-                offset: Offset(0, 2),
-              ),
-            ],
-          ),
-          child: TextFormField(
-            controller: _citycontroller,
-            keyboardType: TextInputType.name,
-            style: TextStyle(
-              color: Color(0xFF6F35A5),
-              fontFamily: 'OpenSans',
-              fontWeight: FontWeight.bold,
-            ),
-            cursorColor: Color(0xFF6F35A5),
-            validator: (value) {
-              if (value == null || value.isEmpty) {
-                return '*';
-              }
-              return null;
-            },
-            decoration: InputDecoration(
-              errorStyle: TextStyle(height: 0),
-              border: InputBorder.none,
-              contentPadding: EdgeInsets.symmetric(vertical: 12.5),
-              prefixIcon: Icon(
-                Icons.email,
-                color: Color(0xFF6F35A5),
-              ),
-              hintText: 'Enter your City',
               hintStyle: TextStyle(
                 color: Colors.black54,
                 fontWeight: FontWeight.bold,

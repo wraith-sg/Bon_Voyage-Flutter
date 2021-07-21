@@ -10,15 +10,15 @@ class Menu extends StatelessWidget {
     return Padding(
         padding: const EdgeInsets.symmetric(vertical: 30),
         child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                _menuItem(title: 'Home', routeName: routeLoginPage),
-                _menuItem(title: 'About us', routeName: routeLoginPage),
-                _menuItem(title: 'Blog', routeName: routeLoginPage),
-                _menuItem(title: 'Help', routeName: routeLoginPage),
+                _menuItem(title: 'Home', routeName: routeHome),
+                _menuItem(title: 'About Us', routeName: routeAbout),
+                _menuItem(title: 'Contact Us', routeName: routeContact),
+                _menuItem(title: 'Help', routeName: routeHelp),
               ],
             ),
             Row(
